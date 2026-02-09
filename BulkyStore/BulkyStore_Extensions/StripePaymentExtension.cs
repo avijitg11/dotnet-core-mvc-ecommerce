@@ -8,7 +8,11 @@ namespace BulkyStore_Extensions
     {
         public static void StripePaymentInject(this WebApplicationBuilder builder)
         {
-            builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
+            builder.Services.Configure<StripeSettings>(options =>
+            {
+                options.SecretKey = builder.Configuration["BulkyStoreSendGridSecretKey"];
+                options.PublishableKey = builder.Configuration["BulkyStoreStripePublishableKey"];
+            });
         }
     }
 }

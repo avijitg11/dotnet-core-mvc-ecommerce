@@ -11,7 +11,7 @@ namespace BulkyStore_Utility
 
         public EmailSender(IConfiguration _config)
         {
-            SendGridSecret = _config.GetValue<string>("SendGrid:SecretKey");
+            SendGridSecret = _config["BulkyStoreSendGridSecretKey"];
         }
 
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
